@@ -1,0 +1,16 @@
+h1,
+p {
+  font-family: Lato;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.square {
+  flex: 1 0 33%;
+  border: red 1px solid;
+  height: 100px;
+  background-color: blue;
+}
