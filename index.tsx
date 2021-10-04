@@ -33,9 +33,20 @@ const Square123 = ({
   </div>
 );
 
+const winningLines = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+  [1, 4, 7],
+  [2, 5, 8],
+  [3, 6, 9],
+  [1, 5, 9],
+  [2, 5, 7],
+];
+
 const App = () => {
   const [playsState, setPlaysState] = React.useState<Map<number, Marker>>(
-    new Map<number, Marker>([[1, Marker.x]])
+    new Map<number, Marker>([])
   );
 
   const play = (event: React.MouseEvent<HTMLDivElement>, text: number) => {
