@@ -33,16 +33,37 @@ const Square123 = ({
   </div>
 );
 
+const winningLines = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+  [1, 4, 7],
+  [2, 5, 8],
+  [3, 6, 9],
+  [1, 5, 9],
+  [2, 5, 7],
+];
+
 const App = () => {
+  const [winner, setWinner] = React.useState<Marker | undefined>(undefined);
   const [playsState, setPlaysState] = React.useState<Map<number, Marker>>(
-    new Map<number, Marker>([[1, Marker.x]])
+    new Map<number, Marker>([])
   );
+
+  const checkForWin = () => {
+    return winningLines.some((line) =>
+      line.every((x) => playsState.get(x) === currentPlayer)
+    );
+  };
 
   const play = (event: React.MouseEvent<HTMLDivElement>, text: number) => {
     event.preventDefault();
     console.log(event.currentTarget, text);
     setPlaysState(playsState.set(text, currentPlayer));
     console.dir(Array.from(playsState));
+    if (checkForWin()) {
+      setWinner(currentPlayer);
+    }
     setCurrentPlayer(currentPlayer === Marker.x ? Marker.o : Marker.x);
   };
   const getGrid = () => {
@@ -60,6 +81,22 @@ const App = () => {
     });
   };
   const [currentPlayer, setCurrentPlayer] = React.useState<Marker>(Marker.o);
+
+  if (winner) {
+    return (
+      <h1>
+        The winner is: {winner}{' '}
+        <button
+          onClick={() => {
+            setPlaysState(new Map());
+            setWinner(undefined);
+          }}
+        >
+          Play Again
+        </button>
+      </h1>
+    );
+  }
 
   return (
     <div>
