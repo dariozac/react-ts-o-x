@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { render } from 'react-dom';
-import Hello from './Hello';
 import './style.css';
 
 interface AppProps {}
@@ -21,8 +20,8 @@ const Square123 = ({
   text: number;
   marker: Marker | undefined;
   currentPlayer: Marker;
-  plays: any;
-  play: any;
+  plays: Map<number, Marker>;
+  play: (event, number, Marker) => void;
 }) => (
   <div
     key={key}
