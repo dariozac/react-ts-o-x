@@ -49,17 +49,18 @@ const App = () => {
     new Map<number, Marker>([])
   );
 
-  const checkForWin = () => {
+  const checkForWin = (): boolean => {
     return winningLines.some((line) =>
       line.every((x) => playsState.get(x) === currentPlayer)
     );
   };
 
-  const play = (event: React.MouseEvent<HTMLDivElement>, text: number) => {
+  const play = (
+    event: React.MouseEvent<HTMLDivElement>,
+    text: number
+  ): void => {
     event.preventDefault();
-    console.log(event.currentTarget, text);
     setPlaysState(playsState.set(text, currentPlayer));
-    console.dir(Array.from(playsState));
     if (checkForWin()) {
       setWinner(currentPlayer);
     }
