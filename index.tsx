@@ -1,6 +1,8 @@
+
 import * as React from "react";
 import { render } from "react-dom";
 import "./style.css";
+
 
 enum Marker {
   x = "X",
@@ -82,7 +84,7 @@ const App = () => {
   if (winner) {
     return (
       <h1>
-        The winner is: {winner}{" "}
+        The winner is: {winner}{' '}
         <button
           onClick={() => {
             setPlaysState(new Map());
