@@ -1,12 +1,12 @@
-import * as React from 'react';
-import { render } from 'react-dom';
-import './style.css';
 
-interface AppProps {}
+import * as React from "react";
+import { render } from "react-dom";
+import "./style.css";
+
 
 enum Marker {
-  x = 'X',
-  o = 'O',
+  x = "X",
+  o = "O"
 }
 
 const Square123 = ({
@@ -14,7 +14,7 @@ const Square123 = ({
   text,
   plays,
   play,
-  currentPlayer,
+  currentPlayer
 }: {
   key: number;
   text: number;
@@ -26,9 +26,9 @@ const Square123 = ({
   <div
     key={key}
     onClick={(e) => play(e, text as number, currentPlayer)}
-    className={'square'}
+    className={"square"}
   >
-    {plays.has(text) ? plays.get(text) : 'open'}
+    {plays.has(text) ? plays.get(text) : "open"}
   </div>
 );
 
@@ -40,7 +40,7 @@ const winningLines: number[][] = [
   [2, 5, 8],
   [3, 6, 9],
   [1, 5, 9],
-  [2, 5, 7],
+  [2, 5, 7]
 ];
 
 const App = () => {
@@ -100,10 +100,10 @@ const App = () => {
   return (
     <div>
       <h1>Current Player: {currentPlayer}</h1>
-      <div className={'grid'}>{getGrid()}</div>
+      <div className={"grid"}>{getGrid()}</div>
       <button onClick={() => setPlaysState(new Map())}>Start Again?</button>
     </div>
   );
 };
 
-render(<App />, document.getElementById('root'));
+render(<App />, document.getElementById("root"));
