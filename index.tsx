@@ -1,15 +1,13 @@
-
 import * as React from "react";
 import { render } from "react-dom";
 import "./style.css";
-
 
 enum Marker {
   x = "X",
   o = "O"
 }
 
-const Square123 = ({
+const Squares = ({
   key,
   text,
   plays,
@@ -48,7 +46,7 @@ const App = () => {
   const [playsState, setPlaysState] = React.useState<Map<number, Marker>>(
     new Map<number, Marker>([])
   );
-
+  const [currentPlayer, setCurrentPlayer] = React.useState<Marker>(Marker.o);
   const checkForWin = (): boolean => {
     return winningLines.some((line) =>
       line.every((x) => playsState.get(x) === currentPlayer)
@@ -69,7 +67,7 @@ const App = () => {
   const getGrid = () => {
     return [1, 2, 3, 4, 5, 6, 7, 8, 9].map((x, i) => {
       return (
-        <Square123
+        <Squares
           key={i}
           marker={playsState.get(x)}
           text={x}
@@ -80,12 +78,11 @@ const App = () => {
       );
     });
   };
-  const [currentPlayer, setCurrentPlayer] = React.useState<Marker>(Marker.o);
 
   if (winner) {
     return (
       <h1>
-        The winner is: {winner}{' '}
+        The winner is: {winner}{" "}
         <button
           onClick={() => {
             setPlaysState(new Map());
